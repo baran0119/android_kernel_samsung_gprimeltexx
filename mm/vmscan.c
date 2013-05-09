@@ -111,7 +111,6 @@ struct scan_control {
 #ifdef CONFIG_RUNTIME_COMPCACHE
 	struct rtcc_control *rc;
 #endif /* CONFIG_RUNTIME_COMPCACHE */
-
 	/*
 	 * Reclaim pages from a vma. If the page is shared by other tasks
 	 * it is zapped from a vma without reclaim so it ends up remaining
