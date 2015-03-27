@@ -5433,17 +5433,26 @@ static int iris_fops_release(struct file *file)
 		retval = hci_cmd_uninterruptible(HCI_FM_DISABLE_TRANS_CMD,
 				radio->fm_hdev);
 		radio->mode = FM_OFF;
+<<<<<<< HEAD
 		radio->is_fm_closing = 0;
+=======
+		retval = hci_cmd(HCI_FM_DISABLE_TRANS_CMD,
+					radio->fm_hdev);
+>>>>>>> 79b6477... radio: iris: change the FM module from modular to built in
 	} else if (radio->mode == FM_CALIB) {
 		radio->mode = FM_OFF;
 		return retval;
 	}
 END:
+<<<<<<< HEAD
 	mutex_lock(&fm_smd_enable);
 	if (radio->fm_hdev != NULL)
 		radio->fm_hdev->close_smd();
 	mutex_unlock(&fm_smd_enable);
 
+=======
+	radio->fm_hdev->close_smd();
+>>>>>>> 79b6477... radio: iris: change the FM module from modular to built in
 	if (retval < 0)
 		FMDERR("Err on disable FM %d\n", retval);
 
