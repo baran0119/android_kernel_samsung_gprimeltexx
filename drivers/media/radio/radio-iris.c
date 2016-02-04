@@ -67,6 +67,7 @@ static void radio_hci_cmd_task(unsigned long arg);
 static void radio_hci_rx_task(unsigned long arg);
 static struct video_device *video_get_dev(void);
 static DEFINE_RWLOCK(hci_task_lock);
+extern struct mutex fm_smd_enable;
 
 struct iris_device {
 	struct device *dev;
@@ -5260,7 +5261,11 @@ static int iris_fops_release(struct file *file)
 		return retval;
 	}
 END:
-	radio->fm_hdev->close_smd();
+	if (radio->fm_hdev != NULL) {
+		mutex_lock(&fm_smd_enable);
+		radio->fm_hdev->close_smd();
+		mutex_unlock(&fm_smd_enable);
+	}
 	if (retval < 0)
 		FMDERR("Err on disable FM %d\n", retval);
 
