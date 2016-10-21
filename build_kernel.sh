@@ -11,5 +11,5 @@ fi
 
 mkdir ${outDir}
 
-make -C $(pwd) O=${outDir} msm8916_sec_defconfig VARIANT_DEFCONFIG=msm8916_sec_fortuna_eur_defconfig SELINUX_DEFCONFIG=selinux_defconfig
+make -C $(pwd) O=${outDir} cyanogen_gprimeltexx_defconfig
 time make -j4 -C $(pwd) O=${outDir}
