@@ -11,5 +11,5 @@ fi
 
 mkdir ${outDir}
 
-make -C $(pwd) O=${outDir} cyanogen_gprimeltexx_defconfig
+make -C $(pwd) O=${outDir} lineageos_gprimeltexx_defconfig
 time make -j4 -C $(pwd) O=${outDir}
